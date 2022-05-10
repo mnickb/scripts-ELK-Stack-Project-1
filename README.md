@@ -283,8 +283,8 @@ Inside Ansible container, root
  - nano metricbeat-playbook.yml
 
 
-##Domain:  Network Security
-###Question 1:  Faulty Firewall
+## Domain:  Network Security
+### Question 1:  Faulty Firewall
 
 Suppose you have a firewall that’s supposed to block SSH connections, but instead lets them through.  How would you debug it?
 If my firewall that’s supposed to block SSH connections but instead is allowing them through, the first thing I would do is check the system status to make sure it is active, “systemctl status sshd”.  The default port is port 22.  I would check the SSH configuration file and exam the running process.  Running the command, “grep Port /etc/ssh/sshid_config”, I should get an output of port numbers.  Then I would see what port the service is running on, “sudo ss -plnt”.   Now I would check the firewall configurations to see if it was updated to allow SSH connections and the authorized ports.  I would also check the TCP (Transmission Control Protocol), three-way handshake, to make sure that the firewall is rejecting set messages, “sudo net -an | grep SYN_SENT”.  After checking what is coming through and determining what is authorized and what is not authorized then remedy it by resetting rules and strengthening the firewalls. 
